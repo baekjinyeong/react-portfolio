@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Header from './components/Header';
 import PageScroll from './components/Pagescroll'
+import Nav from './components/nav'
 import './App.css';
 
 class App extends Component {
@@ -8,7 +9,9 @@ class App extends Component {
     return(
       <Fragment>
         <Header/>
-        <PageScroll/>
+        <PageScroll>
+          <Nav/>
+        </PageScroll>
       </Fragment>
     );
   }
