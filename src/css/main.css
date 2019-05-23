@@ -1,12 +1,37 @@
 #root {
   height: 100%;
 }
+/**********************************************************/
 .header h1 {
   position: fixed;
   left: 7%;
   top: 3.5%;
   font-size: 39px;
+  width: 60px;
 }
+svg {
+  position: absolute;
+}
+.App-logo {
+  stroke-dasharray: 251;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s ease-out;
+  cursor: pointer;
+  animation: dash 1s;
+  transition:transform .3s cubic-bezier(.3,.86,.61,1.63);
+}
+.App-logo:hover {
+  transform: scale(.9);
+}
+
+.logo-text {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+/**********************************************************/
+
+/**********************************************************/
 .page-scroll-wrapper {
   height: 100%;
 }
@@ -18,10 +43,14 @@
   font-size: 1px;
   text-indent: -9999px;
   color: transparent;
-  width: 17px;
+  width: 30px;
   height: 24px;
   transition: all .2s linear;
   cursor: pointer;
+  transition:transform .3s cubic-bezier(.3,.86,.61,1.63);
+}
+.gnb-button:hover {
+  transform: scale(.9);
 }
 .gnb-button:after {
   position: absolute;
@@ -32,7 +61,6 @@
   background: #000;
   top: 0px;
   transition: all .6s ease;
-  transform: matrix(2, 0, 0, 1, 0, 0);
 }
 .gnb-button:before {
   position: absolute;
@@ -43,16 +71,18 @@
   background: #000;
   top: 24px;
   transition: all .6s ease;
-  transform: matrix(2, 0, 0, 1, 0, 0);
   bottom: 0;
 }
+/**********************************************************/
+
+/**********************************************************/
 .gnb-wrapper.active .gnb-button:before {
   top: 9px;
-  transform: matrix(2, 2, -0.7071, 0.7071, 0, 0);
+  transform: matrix(1, 1, -0.7071, 0.7071, 0, 0);
 }
 .gnb-wrapper.active .gnb-button:after {
   top: 9px;
-  transform: matrix(2, -2, 0.7071, 0.7071, 0, 0);
+  transform: matrix(1, -1, 0.7071, 0.7071, 0, 0);
 }
 
 nav {
@@ -102,7 +132,9 @@ nav {
 .gnb-item:hover button:after {
   width: 20px;
 }
+/**********************************************************/
 
+/**********************************************************/
 section {
   height: 100%;
 }
@@ -118,9 +150,9 @@ section {
 .slide4 {
   background: darkkhaki;
 }
+/**********************************************************/
 
-
-
+/**********************************************************/
 @keyframes dash {
   0% {
     stroke-dashoffset: 0;
@@ -132,15 +164,4 @@ section {
     stroke-dashoffset: 502;
   }
 }
-
-.App-logo {
-  stroke-dasharray: 251;
-  stroke-dashoffset: 0;
-  transition: stroke-dashoffset 1s ease-out;
-  cursor: pointer;
-  animation: dash 1s;
-}
-
-.App-logo:hover {
-  stroke-dashoffset: 502;
-}
+/**********************************************************/
