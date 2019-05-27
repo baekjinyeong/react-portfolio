@@ -1,56 +1,90 @@
-import React, { Component } from 'react';
-import Nav from './nav';
+import React, { Component, Fragment } from 'react';
 
+// slide page
+class SlidePage extends Component {
+  render() {
+    return (
+      <Fragment>
+        <section className="slide1"></section>
+        <section className="slide2"></section>
+        <section className="slide3"></section>
+        <section className="slide4"></section>
+      </Fragment>
+    )
+  }
+}
+
+// pagination
+class Pagination extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      pageActiveIndex: 0,
+      pageNumbers: []
+    }
+  }
+  render() {
+    const { pageNumbers } = this.state;
+
+    for(let i = 0; i <= 3; i++) {
+      pageNumbers.push(i);
+    }
+    let renderPageNumbers = pageNumbers.map(number => {
+      return (
+        <span key={number}>{number}</span>
+      )
+    })
+    return(
+      <div className="pagination">{renderPageNumbers}</div>
+    );
+  }
+}
+
+
+// page scroll
 class PageScroll extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      scrollPos: 0,
       activeIndex: 0,
-      windowHeight: props.height
+      windowHeight: 0
     }
     this.handleScroll = this.handleScroll.bind(this);
   }
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+  componentDidMount() { // 컴포넌트가 만들어지고 첫 렌더링을 다 마친 후 실행되는 메소드
+    // window.addEventListener('mousewheel', this.handleScroll);
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+  componentWillUnmount() { // 컴포넌트가 DOM 에서 사라진 후 실행되는 메소드
+    // window.removeEventListener('mousewheel', this.handleScroll);
   };
-
-  // window height
-  componentWillMount(){
-    this.setState({
-      height: window.innerHeight + 'px'
-    });
-  }
 
   // scroll event
   handleScroll = (e) => {
-    let scrollTop = e.srcElement.body.scrollTop,
-        itemTranslate = Math.min(0, scrollTop/3 - 60);
+    if(e.wheelDelta > 0) {
+      this.setState({
+        windowHeight: window.innerHeight,
+        activeIndex: this.state.activeIndex - 1
+      })
+      document.documentElement.scrollTop = this.state.windowHeight * this.state.activeIndex
 
-    // const scrollPos = this.state.scrollPos;
-    // let pageIndex = this.state.activeIndex;
-    // const winHeigith = window.innerHeight;
-
-    this.setState({
-      transform: itemTranslate
-    })
-    console.log(scrollTop, itemTranslate, this.state.height)
+    } else {
+      this.setState({
+        windowHeight: window.innerHeight,
+        activeIndex: this.state.activeIndex + 1
+      })
+      document.documentElement.scrollTop = this.state.windowHeight * this.state.activeIndex
+    }
+    console.log(this.state.windowHeight, this.state.activeIndex, document.documentElement.scrollTop)
   }
 
   render() {
     return(
       <div className="page-scroll-wrapper">
-        <Nav/>
-        <section className="slide1"></section>
-        <section className="slide2"></section>
-        <section className="slide3"></section>
-        <section className="slide4"></section>
+        <SlidePage/>
+        <Pagination/>
       </div>
     )
   }

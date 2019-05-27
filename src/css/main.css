@@ -93,6 +93,7 @@ nav {
   visibility: hidden;
   opacity: 0;
   transition: all 0.3s ease;
+  z-index: 99;
 }
 .gnb-wrapper.active nav {
   opacity: 1;
@@ -139,7 +140,7 @@ section {
   height: 100%;
 }
 .slide1 {
-  background: darksalmon;
+  background: #fff;
 }
 .slide2 {
   background: darkslategrey;
@@ -151,6 +152,26 @@ section {
   background: darkkhaki;
 }
 /**********************************************************/
+.pagination {
+  position: fixed;
+  margin-top: -54px;
+  width: 10px;
+  top: 50%;
+  left: 3%;
+}
+.pagination span {
+  display: inline-block;
+  font-size: 0;
+  color: transparent;
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.pagination span ~ span {
+  margin-top: 5px;
+}
 
 /**********************************************************/
 @keyframes dash {
