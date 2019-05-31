@@ -22,8 +22,7 @@ class App extends Component {
       <Fragment>
         <Header/>
         <Nav/>
-        <PageScroll>
-        </PageScroll>
+        <PageScroll/>
       </Fragment>
     );
   }

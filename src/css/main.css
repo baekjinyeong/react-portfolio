@@ -172,6 +172,9 @@ section {
 .pagination span ~ span {
   margin-top: 5px;
 }
+.pagination .active {
+  background-color: #e03131;
+}
 
 /**********************************************************/
 @keyframes dash {
