@@ -27,7 +27,7 @@ class Pagination extends Component {
     }
   }
 
-  renderPageNumbers = (e) => {
+  renderPageNumbers = () => {
     const { pageNumbers } = this.state;
     const { pageIndex } = this.props;
 
@@ -68,8 +68,11 @@ class PagenationButton extends Component {
     console.log('test')
   }
   render() {
+    const { handleClick, targetRef } = this;
+    const { activeIndex } = this.props;
+
     return(
-      <span onClick={this.handleClick} ref={this.targetRef}>{this.props.activeIndex}</span>
+      <span onClick={handleClick} ref={targetRef}>{activeIndex}</span>
     )
   }
 }
@@ -97,21 +100,23 @@ class PageScroll extends Component {
 
   // scroll event
   handleScroll = (e) => {
+    const { activeIndex, windowHeight, } = this.state;
+
     if(e.wheelDelta > 0) {
       this.setState({
         windowHeight: window.innerHeight,
-        activeIndex: this.state.activeIndex - 1
+        activeIndex: activeIndex - 1
       })
-      document.documentElement.scrollTop = this.state.windowHeight * this.state.activeIndex
+      document.documentElement.scrollTop = windowHeight * activeIndex
 
     } else {
       this.setState({
         windowHeight: window.innerHeight,
-        activeIndex: this.state.activeIndex + 1
+        activeIndex: activeIndex + 1
       })
-      document.documentElement.scrollTop = this.state.windowHeight * this.state.activeIndex
+      document.documentElement.scrollTop = windowHeight * activeIndex
     }
-    console.log(this.state.windowHeight, this.state.activeIndex, document.documentElement.scrollTop)
+    console.log(this.state.windowHeight, activeIndex, document.documentElement.scrollTop)
   }
 
   handelActive = () => {
@@ -120,6 +125,7 @@ class PageScroll extends Component {
 
   render() {
     const { pageIndex } = this.state;
+
     return(
       <div className="page-scroll-wrapper">
         <SlidePage/>
